@@ -261,6 +261,14 @@ impl Atom {
     }
 }
 
+impl<I> std::ops::Index<I> for Atom
+where str: std::ops::Index<I> {
+    type Output = <str as std::ops::Index<I>>::Output;
+    fn index(&self, index: I) -> &Self::Output {
+        &self.as_str()[index]
+    }
+}
+
 impl std::cmp::PartialEq<Atom> for Atom {
     fn eq(&self, other: &Atom) -> bool {
         // This works because Atoms with the same value
@@ -650,5 +658,16 @@ impl std::hash::Hash for Atom {
             // for fast hashing of Atom types.
             self.inner.as_ref().key.hash(state);
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    
+    #[test]
+    fn substring_test() {
+        let atom = Atom::new("0123456789");
+        assert_eq!(&atom[1..4], "123");
     }
 }
