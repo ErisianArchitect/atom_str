@@ -2,7 +2,7 @@
 name = "atom_str"
 description = "A string interning library."
 edition = "2024"
-version = "0.1.0"
+version = "0.2.0"
 repository = "https://github.com/ErisianArchitect/atom_str"
 readme = "README.md"
 license-file = "LICENSE"
