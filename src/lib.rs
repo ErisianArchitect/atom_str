@@ -249,7 +249,7 @@ impl Atom {
     /// Compares the pointers of two [Atom] instances.
     #[must_use]
     #[inline]
-    pub fn ptr_eq(lhs: &Self, rhs: &Self) -> bool {
+    pub fn ptr_eq(lhs: Self, rhs: Self) -> bool {
         std::ptr::eq(lhs.inner.as_ptr(), rhs.inner.as_ptr())
     }
 
@@ -265,11 +265,11 @@ impl std::cmp::PartialEq<Atom> for Atom {
     fn eq(&self, other: &Atom) -> bool {
         // This works because Atoms with the same value
         // will always have the same pointer.
-        Atom::ptr_eq(self, other)
+        Atom::ptr_eq(*self, *other)
     }
 
     fn ne(&self, other: &Atom) -> bool {
-        !Atom::ptr_eq(self, other)
+        !Atom::ptr_eq(*self, *other)
     }
 }
 
