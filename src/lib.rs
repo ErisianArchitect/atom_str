@@ -531,6 +531,18 @@ impl AsRef<Path> for Atom {
     }
 }
 
+impl std::borrow::Borrow<str> for Atom {
+    fn borrow(&self) -> &str {
+        self.as_str()
+    }
+}
+
+impl std::borrow::Borrow<Path> for Atom {
+    fn borrow(&self) -> &Path {
+        self.as_path()
+    }
+}
+
 impl From<Atom> for String {
     #[inline]
     fn from(value: Atom) -> Self {
